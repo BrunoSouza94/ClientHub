@@ -1,0 +1,71 @@
+﻿@model ClientHub.Web.Models.Client
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h3>Cliente</h3>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nome
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            Logotipo
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="@($"{Model.Logo}")" style="max-width: 100px;" />
+        </dd>
+        <hr />
+        @if (Model.Addresses is not null)
+        {
+            <h5>Endereços</h5>
+            @Html.ActionLink("Novo Endereço", "Create", "Address", new { clientId = Model.Id })
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Logradouro</th>
+                        <th>Número</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var address in Model.Addresses)
+                    {
+                        <tr>
+                            <td>@address.Thoroughfare</td>
+                            <td>@address.LocationNumber</td>
+                            <td>@address.Neighborhood</td>
+                            <td>@address.City</td>
+                            <td>@address.State</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", "Address", new { id = address.Id, clientId = address.ClientId }) |
+                                @Html.ActionLink("Remover", "Delete", "Address", new { id = address.Id, clientId = address.ClientId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </dl>
+
+</div>
+<div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar</a>
+</div>

@@ -1,0 +1,14 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Erro";
+}
+
+<h1 class="text-danger">Erro</h1>
+<h2 class="text-danger">Ocorreu um erro ao tentar realizar sua requisição.</h2>
+
+@if (Model is not null && !String.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p>
+        <strong>Erro:</strong> <code>@Model.ErrorMessage</code>
+    </p>
+}

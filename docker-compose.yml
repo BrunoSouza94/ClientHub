@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  clienthub.web:
+    image: ${DOCKER_REGISTRY-}clienthubweb
+    container_name: clienthub.web
+    build:
+      context: .
+      dockerfile: ./ClientHub.Web/Dockerfile
+
+  clienthub.api:
+    image: ${DOCKER_REGISTRY-}clienthubapi
+    container_name: clienthub.api
+    build:
+      context: .
+      dockerfile: ClientHub.Api/Dockerfile
+
+  clienthub.db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: clienthub.database
+    user: root
+    volumes:
+      - ./data:/var/opt/mssql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=84sd62aA!0
+    ports:
+      - 1433:1433
+
+  clienthub.cache:
+    image: redis:latest
+    container_name: clienthub.cache
+    restart: always
+    ports:
+      - '6379:6379'
+
