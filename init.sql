@@ -59,6 +59,7 @@ begin
 	from Address
 	where ClientId = @Id
 end
+go
 
 create procedure GetAddressesByClientId
 	@ClientId uniqueidentifier
