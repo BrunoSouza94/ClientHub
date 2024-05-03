@@ -16,9 +16,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=9090
-      - ASPNETCORE_HTTPS_PORTS=9091
     ports:
       - "9090:9090"
-      - "9091:9091"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
