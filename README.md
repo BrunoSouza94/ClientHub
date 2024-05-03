@@ -1,21 +1,23 @@
 # ClientHub
 
-## Decisões e guias
-```
- ![Imagem da arquitetura](./Arquitetura.png)
+## Desenho da solução
+![Desenho da arquitetura](Arquitetura.png)
+
  - O backend foi desenvolvido utilizando a Arquitetura Limpa, visando aplicar os conceitos de DDD e padrões SOLID, além da organização para a expansão do projeto quando necessário e a criação de testes.
+ - O armazenamento de imagens é feito através de um container de armazenamento do azure (Blob Storage), gerando uma URL que é persistida no banco de dados e utilizada como fonte para ser exibida na aplicação Web.
+ - Aplicação de caching através do Redis, visando a melhoria de performance e redução de custos com chamadas ao banco de dados.
+ - Aplicação do padrão CQRS utilizando MediatR, separando a lógica entre queries e comandos, visando a possibilidade de melhorias na performance para cada ação específica.
  - O frontend foi desenvolvido no padrão MVC também para manter a separação de responsabilidades e organização do projeto.
  - Utilização de containerês para permitir a escalabilidade horizontal da aplicação, além de estar pronto para nuvem.
  - Docker-compose para facilitar a execução e deploy do projeto e suas dependências.
- - O armazenamento de imagens é feito através de um container de armazenamento do azure (Blob Storage), salvando no banco de dados uma URL gerada para a imagem que foi armazenada, essa url é persistida no banco de dados e utilizada como fonte para ser exibida na aplicação Web
-```
+
 
 ## Requisitos
-```
+
  - .NET 8
  - Docker
  - SSMS (Ou similar para execução de script no banco de dados)
-```
+
 
 ## Instruções para Execução
 ```
